@@ -1,0 +1,19 @@
+django
+djangorestframework
+django-crispy-forms
+requests
+django-tables2
+jsonpickle
+gunicorn
+django-environ
+pytest-pythonpath
+pytest-cov
+mixer
+pytest
+django-debug-toolbar
+Pillow
+psycopg2-binary==2.9.3
+easyocr==1.6.0
+dramatiq[rabbitmq, watch]
+django-dramatiq
+celery

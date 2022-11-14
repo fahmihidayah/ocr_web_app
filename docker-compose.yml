@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+#  db:
+#    image: postgres
+#    restart: always
+#    ports:
+#      - 5432:5432
+#    environment:
+#      POSTGRES_DB: ocr_app_db
+#      POSTGRES_PASSWORD: password
+#      POSTGRES_USER : postgres
+
+  rabbit_mq:
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+#  adminer:
+#    image: adminer
+#    restart: always
+#    ports:
+#      - "8080:8080"
+
+  web:
+    image: ocr_app
+    ports:
+      - 8081:8000
+    volumes:
+      - ./project:/src
+    command: sh -c "chmod +x entrypoint-prod.sh && ./entrypoint-prod.sh"
+
+  ocr_processor:
+    image: ocr_app
+    restart: on-failure
+    volumes:
+      - ./project:/src
+    command: sh -c "chmod +x ocr_processor_entrypoint.sh && ./ocr_processor_entrypoint.sh"
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./project/media:/media
+      - ./project/static:/static
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - "8001:80"

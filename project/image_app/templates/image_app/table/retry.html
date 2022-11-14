@@ -1,0 +1,4 @@
+<form action="{% url 'view_retry_process' record.pk %}" method="post">
+    {% csrf_token %}
+    <button class="btn btn-primary">Retry</button>
+</form>
