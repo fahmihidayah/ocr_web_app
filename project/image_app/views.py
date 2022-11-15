@@ -5,6 +5,7 @@ from django_tables2 import SingleTableView
 from django.shortcuts import redirect
 from django.contrib import messages
 from . import tasks
+import jsonpickle
 # Create your views here.
 
 from django.urls import reverse, reverse_lazy
@@ -32,6 +33,12 @@ class ImageDetailView(generic.DetailView):
     template_name = 'image_app/detail_image_app.html'
     model = models.Image
     queryset = models.Image.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(ImageDetailView, self).get_context_data(**kwargs)
+        data: models.Image = context['object']
+        context['result_report'] = jsonpickle.decode(data.text)
+        return context
 
 
 class RetryProcessView(generic.View):

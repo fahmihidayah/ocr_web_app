@@ -125,7 +125,7 @@ DATABASES = {
 }
 
 
-CELERY_BROKER_URL = "pyamqp://rabbit_mq:5672"
+CELERY_BROKER_URL = "pyamqp://localhost:5672"
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_IGNORE_RESULT = True

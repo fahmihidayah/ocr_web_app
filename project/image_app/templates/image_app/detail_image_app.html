@@ -3,25 +3,45 @@
 {% block container %}
 <div class="row m-5">
     <div class="col-md-4">
-        <img src="/media/{{ object.file }}" class="card-img-top img-fluid" style="width: 100%; height: 500px" alt="Image">
+        <img src="/media/{{ object.file }}" class="card-img-top img-fluid" style="width: 100%; height: 500px"
+             alt="Image">
 
     </div>
     <div class="col-md-8">
         <div class="card">
-            
+
             <div class="card-body">
                 <h5 class="card-title">{{ object.title }}</h5>
                 {% if object.status == 0 %}
-                    <p>Still processing the image</p>
+                <p>Still processing the image</p>
                 {% elif object.status == 1 %}
-                    <p class="card-text">{{ object.result }}</p>
+                <p class="card-text">{{ object.result }}</p>
                 {% else %}
-                    <p class="card-text">Error Processing the image</p>
-                {% endif %}           
-    
-                
+                <p class="card-text">Error Processing the image</p>
+                {% endif %}
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Coordinate</th>
+                        <th scope="col">Text</th>
+                        <th scope="col">Confidence Level</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in result_report %}
+                    <tr>
+                        <td>{{ item.coordinate }}</td>
+                        <td>{{ item.text }}</td>
+                        <td>{{ item.confident_level}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
+
+
     </div>
 </div>
 

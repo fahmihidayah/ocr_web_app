@@ -19,3 +19,7 @@ class Image(models.Model):
 
     def __str__(self):
         return self.title
+
+
+    def result_text_to_object(self):
+        return None
