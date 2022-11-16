@@ -5,6 +5,7 @@ from django_tables2 import Table, TemplateColumn
 class ImageDataTable(Table):
 
     detail = TemplateColumn(template_name='image_app/table/detail.html')
+    delete = TemplateColumn(template_name='image_app/table/delete.html')
     retry = TemplateColumn(template_name='image_app/table/retry.html')
 
     class Meta:

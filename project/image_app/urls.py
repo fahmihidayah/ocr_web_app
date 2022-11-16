@@ -6,4 +6,5 @@ urlpatterns = [
     path('images/create', views.ImageCreateView.as_view(), name='view_create_images'),
     path('images/<int:pk>', views.ImageDetailView.as_view(), name='view_detail_images'),
     path('image/process/<int:pk>', views.RetryProcessView.as_view(), name='view_retry_process'),
+    path('image/delete/<int:pk>', views.ImageDeleteView.as_view(), name='view_delete_images'),
 ]

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<div class="row m-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <p>Do you want to delete {{ image.title }}?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock container %}
+
+
+{% block footer %}
+{% endblock footer %}

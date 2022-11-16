@@ -41,6 +41,22 @@ class ImageDetailView(generic.DetailView):
         return context
 
 
+class ImageDeleteView(generic.DeleteView):
+    template_name = 'image_app/delete_image_app.html'
+    model = models.Image
+    queryset = models.Image.objects.all()
+    success_url = reverse_lazy('view_images')
+
+
+    def get_context_data(self, **kwargs):
+        print("test image")
+        return super(ImageDeleteView, self).get_context_data(**kwargs)
+
+    def get_success_url(self):
+        messages.success(self.request, 'Image Deleted')
+        return super(ImageDeleteView, self).get_success_url()
+
+
 class RetryProcessView(generic.View):
 
     def post(self, request, *args, **kwargs):
